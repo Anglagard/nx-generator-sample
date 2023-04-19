@@ -1,0 +1,17 @@
+import {Injectable} from '@angular/core';
+
+/**
+ * <%= classify(name) %>RulesService
+ */
+@Injectable({
+                providedIn: 'root'
+            })
+export class <%= classify(name) %>RulesService {
+
+    /**
+     * Constructeur
+     */
+    constructor() {
+    }
+
+}

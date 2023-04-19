@@ -1,0 +1,73 @@
+import {HttpClient} from '@angular/common/http';
+import {TestBed, waitForAsync} from '@angular/core/testing';
+import {Environnement, TestsEnvUtils} from '@nfe/env-nativescript';
+import {<%= classify(name) %>DataService} from './<%= dasherize(name) %>-data.service';
+import createSpyObj = jasmine.createSpyObj;
+import SpyObj = jasmine.SpyObj;
+
+/**
+ * Tests <%= classify(name) %>DataService
+ */
+describe('<%= classify(name) %>DataService', () => {
+
+    /**
+     * Service à tester
+     */
+    let service: <%= classify(name) %>DataService;
+
+    /**
+     * Mock pour le HttpClient
+     */
+    let httpClient: SpyObj<HttpClient>;
+
+    /**
+     * Mock pour le Environnement
+     */
+    let environnement: Environnement;
+
+    /**
+     * Before each
+     */
+    beforeEach(() => {
+
+        // Mock httpClient
+        httpClient = createSpyObj('HttpClient', ['get']);
+
+        // Mock Environnement
+        environnement = TestsEnvUtils.createEnvironnement();
+
+        // Configuration
+        TestBed.configureTestingModule({
+                                           providers: [
+                                               {provide: HttpClient, useValue: httpClient},
+                                               {provide: Environnement, useValue: environnement}
+                                           ]
+                                       });
+
+        // Instanciation service
+        service = TestBed.inject(<%= classify(name) %>DataService);
+    });
+
+    /**
+     * Test constructeur
+     */
+    it('should be created', () => {
+        expect(service)
+                .toBeTruthy();
+    });
+
+    /**
+     * Test clearCache
+     */
+    it('should clearCache', waitForAsync(() => {
+
+        // Clear
+        const result = service.clearCache();
+
+        result.subscribe(value => {
+            expect(value)
+                    .toBeTrue();
+        });
+    }));
+
+});

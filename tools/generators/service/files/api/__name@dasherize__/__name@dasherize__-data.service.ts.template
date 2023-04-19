@@ -1,0 +1,47 @@
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Environnement} from '@nfe/env-nativescript';
+import {Observable, of, Subject} from 'rxjs';
+import {CacheBuster} from 'ts-cacheable';
+import {AbstractApiEpargnantService} from '../abstract-api-epargnant.service';
+
+/**
+ * <%= classify(name) %>DataService
+ */
+@Injectable({
+                providedIn: 'root'
+            })
+export class <%= classify(name) %>DataService extends AbstractApiEpargnantService {
+
+    /**
+     * Cache buster
+     *
+     * @type {Subject<void>}
+     * @protected
+     */
+    static cacheBuster = new Subject();
+
+    /**
+     * Constructeur
+     *
+     * @param {HttpClient} http
+     * @param {Environnement} environnement
+     */
+    constructor(http: HttpClient,
+                environnement: Environnement) {
+        super(http, '<%= ressource %>', environnement);
+    }
+
+    /**
+     * Clear cache
+     *
+     * @returns {Observable<boolean>}
+     */
+    @CacheBuster({
+                     cacheBusterNotifier: <%= classify(name) %>DataService.cacheBuster
+                 })
+    clearCache(): Observable<boolean> {
+        return of(true);
+    }
+
+}

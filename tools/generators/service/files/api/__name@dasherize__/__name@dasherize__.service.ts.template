@@ -1,0 +1,23 @@
+import {Injectable} from '@angular/core';
+import {<%= classify(name) %>DataService} from './<%= dasherize(name) %>-data.service';
+import {<%= classify(name) %>RulesService} from './<%= dasherize(name) %>-rules.service';
+
+/**
+ * <%= classify(name) %>Service
+ */
+@Injectable({
+                providedIn: 'root'
+            })
+export class <%= classify(name) %>Service {
+
+    /**
+     * Constructeur
+     *
+     * @param {<%= classify(name) %>DataService} <%= name %>DataService
+     * @param {<%= classify(name) %>RulesService} <%= name %>RulesService
+     */
+    constructor(private <%= name %>DataService: <%= classify(name) %>DataService,
+                private <%= name %>RulesService: <%= classify(name) %>RulesService) {
+    }
+
+}

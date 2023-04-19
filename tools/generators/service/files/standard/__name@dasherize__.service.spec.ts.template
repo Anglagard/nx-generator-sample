@@ -1,0 +1,36 @@
+import {TestBed} from '@angular/core/testing';
+import {<%= classify(name) %>Service} from './<%= dasherize(name) %>.service';
+
+/**
+ * Tests <%= classify(name) %>Service
+ */
+describe('<%= classify(name) %>Service', () => {
+
+    /**
+     * Service à tester
+     */
+    let service: <%= classify(name) %>Service;
+
+    /**
+     * Before each
+     */
+    beforeEach(() => {
+
+        // Configuration
+        TestBed.configureTestingModule({
+                                           providers: []
+                                       });
+
+        // Instanciation service
+        service = TestBed.inject(<%= classify(name) %>Service);
+    });
+
+    /**
+     * Test constructeur
+     */
+    it('should be created', () => {
+        expect(service)
+                .toBeTruthy();
+    });
+
+});

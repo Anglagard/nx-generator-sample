@@ -1,0 +1,59 @@
+import {TestBed} from '@angular/core/testing';
+import {<%= classify(name) %>DataService} from './<%= dasherize(name) %>-data.service';
+import {<%= classify(name) %>RulesService} from './<%= dasherize(name) %>-rules.service';
+import {<%= classify(name) %>Service} from './<%= dasherize(name) %>.service';
+import createSpyObj = jasmine.createSpyObj;
+import SpyObj = jasmine.SpyObj;
+
+/**
+ * Tests <%= classify(name) %>Service
+ */
+describe('<%= classify(name) %>Service', () => {
+
+    /**
+     * Service à tester
+     */
+    let service: <%= classify(name) %>Service;
+
+    /**
+     * Mock pour le <%= classify(name) %>DataService
+     */
+    let <%= name %>DataService: SpyObj<<%= classify(name) %>DataService>;
+
+    /**
+     * Mock pour le <%= classify(name) %>RulesService
+     */
+    let <%= name %>RulesService: SpyObj<<%= classify(name) %>RulesService>;
+
+    /**
+     * Before each
+     */
+    beforeEach(() => {
+
+        // Mock <%= classify(name) %>DataService
+        <%= name %>DataService = createSpyObj<<%= classify(name) %>DataService>('<%= classify(name) %>DataService', ['clearCache']);
+
+        // Mock <%= classify(name) %>DataService
+        <%= name %>RulesService = createSpyObj<<%= classify(name) %>RulesService>('<%= classify(name) %>RulesService', ['']);
+
+        // Configuration
+        TestBed.configureTestingModule({
+                                           providers: [
+                                               {provide: <%= classify(name) %>DataService, useValue: <%= name %>DataService},
+                                               {provide: <%= classify(name) %>RulesService, useValue: <%= name %>RulesService}
+                                           ]
+                                       });
+
+        // Instanciation service
+        service = TestBed.inject(<%= classify(name) %>Service);
+    });
+
+    /**
+     * Test constructeur
+     */
+    it('should be created', () => {
+        expect(service)
+                .toBeTruthy();
+    });
+
+});

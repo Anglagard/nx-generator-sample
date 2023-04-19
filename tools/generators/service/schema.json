@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "service",
+  "title": "Angular Service Schema",
+  "cli": "nx",
+  "type": "object",
+  "description": "Création service angular Nativescript.",
+  "additionalProperties": false,
+  "properties": {
+    "path": {
+      "type": "string",
+      "format": "path",
+      "description": "Chemin vers le répertoire où sera créé le service",
+      "visible": false,
+      "x-priority": "important"
+    },
+    "project": {
+      "type": "string",
+      "description": "Le nom du projet",
+      "x-dropdown": "projects",
+      "x-priority": "important"
+    },
+    "name": {
+      "type": "string",
+      "description": "Le nom du service",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Quel nom voulez-vous utiliser pour ce service ?",
+      "x-priority": "important"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type de service",
+      "default": "standard",
+      "enum": [
+        "standard",
+        "api"
+      ],
+      "x-priority": "important"
+    },
+    "ressource": {
+      "type": "string",
+      "description": "Nom de la ressource api",
+      "x-priority": "important"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}
